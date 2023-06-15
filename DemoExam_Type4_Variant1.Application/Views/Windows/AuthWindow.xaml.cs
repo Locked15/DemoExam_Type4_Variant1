@@ -13,6 +13,12 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
             InitializeComponent();
         }
 
+        private void OnWindowKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+                OnLogInButtonClick(sender, e);
+        }
+
         private void OnLogInButtonClick(object sender, RoutedEventArgs e)
         {
             var login = userLoginInput.Text;
@@ -32,6 +38,7 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
 
         private void OpenProductsWindow()
         {
+            new ProductsWindow().Show();
             Close();
         }
     }

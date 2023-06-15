@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Авторизация — Книжный Клуб" 
         Height="250" Width="310"
-        MinHeight="200" MinWidth="285">
+        MinHeight="200" MinWidth="285"
+        KeyUp="OnWindowKeyUp">
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
