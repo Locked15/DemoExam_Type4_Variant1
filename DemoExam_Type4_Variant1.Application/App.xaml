@@ -1,0 +1,10 @@
+﻿<Application x:Class="DemoExam_Type4_Variant1.Application.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DemoExam_Type4_Variant1.Application"
+             StartupUri="Views/Windows/AuthWindow.xaml">
+
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
