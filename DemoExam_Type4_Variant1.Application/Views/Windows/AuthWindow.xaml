@@ -5,10 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DemoExam_Type4_Variant1.Application"
         mc:Ignorable="d"
-        Title="MainWindow" 
-        Height="450" Width="800">
+        Title="Авторизация — Книжный Клуб" 
+        Height="250" Width="310"
+        MinHeight="200" MinWidth="285">
 
-    <Grid>
-        
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Авторизация" FontSize="18" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Логин:" />
+        <TextBox Name="userLoginInput" Grid.Row="2" Grid.Column="1" />
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Пароль:" />
+        <PasswordBox Name="userPasswordInput" Grid.Row="3" Grid.Column="1" />
+
+        <Button Grid.Row="5" Grid.Column="0" Content="Войти" Margin="2.5" Click="OnLogInButtonClick" />
+        <Button Grid.Row="5" Grid.Column="1" Content="Войти как гость" Margin="2.5" Click="OnContinueAsGuestButtonClick" />
     </Grid>
 </Window>
