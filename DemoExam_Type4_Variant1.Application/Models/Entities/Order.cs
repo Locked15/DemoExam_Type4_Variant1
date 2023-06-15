@@ -25,7 +25,7 @@ public partial class Order
 
     public int FullOrderDiscount
     {
-        get => OrderProducts.Sum(op => op.Product.Discount ?? 0);
+        get => OrderProducts.Sum(op => op.Product.SafeDiscount);
     }
 
     public decimal FullOrderCost

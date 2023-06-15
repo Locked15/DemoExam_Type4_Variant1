@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DemoExam_Type4_Variant1.Application.Models.Entities;
 
@@ -25,12 +26,32 @@ public partial class Product
 
     public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
 
+    public sbyte SafeDiscount
+    {
+        get => Discount ?? 0;
+    }
+
+    public string SafeDiscountString
+    {
+        get => $"{SafeDiscount}%";
+    }
+
     public decimal FinalCost
     {
         get
         {
-            var discountAmount = Cost * ((Discount ?? 0) / 100M);
+            var discountAmount = Cost * (SafeDiscount / 100M);
             return Cost - discountAmount;
+        }
+    }
+
+    public string SafeImagePath
+    {
+        get
+        {
+            // First '\\' to make path relational on executable-level folder (not current component folder).
+            var imagePath = Path.Combine("Assets", "Products", Image ?? string.Empty);
+            return $"\\{imagePath}";
         }
     }
 }
