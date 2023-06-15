@@ -24,4 +24,13 @@ public partial class Product
     public virtual Manufacturer Manufacturer { get; set; } = null!;
 
     public virtual ICollection<OrderProduct> OrderProducts { get; set; } = new List<OrderProduct>();
+
+    public decimal FinalCost
+    {
+        get
+        {
+            var discountAmount = Cost * ((Discount ?? 0) / 100M);
+            return Cost - discountAmount;
+        }
+    }
 }

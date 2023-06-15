@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DemoExam_Type4_Variant1.Application.Models.Entities;
 
@@ -22,4 +21,16 @@ public partial class User
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Role UserRole { get; set; } = null!;
+
+    public string FullName
+    {
+        get
+        {
+            var fullName = $"{Surname} {Name[0]}.";
+            if (Patronymic != null)
+                fullName += $" {Patronymic[0]}.";
+
+            return fullName;
+        }
+    }
 }
