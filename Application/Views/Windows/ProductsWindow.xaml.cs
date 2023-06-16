@@ -31,10 +31,12 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
             var products = DemoExamDataContext.Instance.Products.ToList();
             foreach (var item in products)
             {
-                var listItem = new ProductItem(this, item)
+                var listItem = new ProductItem(item)
                 {
                     Width = GetOptimalItemWidth()
                 };
+                listItem.addToOrderAction.Click += (args, e) => UpdateOrderNavigationVisibility();
+
                 productsList.Items.Add(listItem);
             }
         }
@@ -45,6 +47,8 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
             {
                 SessionData.CurrentOrder?.AddNewProductToOrder(item.Model);
                 UpdateOrderNavigationVisibility();
+
+                MessageBox.Show($"Добавлено: {item.Model.Name}.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -73,7 +77,15 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
 
         private void OnOrderNavigationButtonClick(object sender, RoutedEventArgs e)
         {
-            // ToDo.
+            var dialog = new OrderFormationWindow();
+            dialog.ShowDialog();
+
+            if (dialog.DialogResult == true)
+            {
+                SessionData.GenerateNewOrder();
+                MessageBox.Show("Начато формирование нового заказа.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            UpdateOrderNavigationVisibility();
         }
 
         private void OnLogOutButtonClick(object sender, RoutedEventArgs e) => Close();
