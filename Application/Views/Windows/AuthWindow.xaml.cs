@@ -1,4 +1,7 @@
 ﻿using DemoExam_Type4_Variant1.Application.Common;
+using DemoExam_Type4_Variant1.Application.Models.Entities;
+using System;
+using System.Linq;
 using System.Windows;
 
 namespace DemoExam_Type4_Variant1.Application.Views.Windows
@@ -11,6 +14,19 @@ namespace DemoExam_Type4_Variant1.Application.Views.Windows
         public AuthWindow()
         {
             InitializeComponent();
+        }
+
+        private void OnWindowLoaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DemoExamDataContext.Instance.Statuses.Any();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"База данных недоступна. Приложение будет закрыто.\n\nПодробности:\n{ex.Message}.", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                Close();
+            }
         }
 
         private void OnWindowKeyUp(object sender, System.Windows.Input.KeyEventArgs e)
