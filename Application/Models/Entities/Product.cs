@@ -36,13 +36,14 @@ public partial class Product
         get => $"{SafeDiscount}%";
     }
 
+    public decimal FinalDiscountAmount
+    {
+        get => Cost * (SafeDiscount / 100M);
+    }
+
     public decimal FinalCost
     {
-        get
-        {
-            var discountAmount = Cost * (SafeDiscount / 100M);
-            return Cost - discountAmount;
-        }
+        get => Cost - FinalDiscountAmount;
     }
 
     public string SafeImagePath

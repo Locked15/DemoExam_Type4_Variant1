@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DemoExam_Type4_Variant1.Application.Models.Entities;
@@ -23,14 +24,25 @@ public partial class Order
 
     public virtual User? User { get; set; }
 
-    public int FullOrderDiscount
+    public decimal FullOrderDiscount
     {
-        get => OrderProducts.Sum(op => op.Product.SafeDiscount);
+        get => OrderProducts.Sum(op => op.Product.FinalDiscountAmount * op.Count);
     }
 
     public decimal FullOrderCost
     {
-        get => OrderProducts.Sum(op => op.Product.FinalCost);
+        get => OrderProducts.Sum(op => op.Product.FinalCost * op.Count);
+    }
+
+    public DateTime OrderDeliveryDate
+    {
+        get
+        {
+            var currentDate = DateTime.Now;
+            var isAllProductsAvailable = OrderProducts.All(op => op.Product.Amount > 3);
+
+            return currentDate.AddDays(isAllProductsAvailable ? 3 : 6);
+        }
     }
 
     public bool AddNewProductToOrder(Product product)
@@ -44,7 +56,9 @@ public partial class Order
 
         var newOrderProduct = new OrderProduct()
         {
+            Order = this,
             OrderId = Id,
+            Product = product,
             ProductId = product.Id,
             Count = 1
         };

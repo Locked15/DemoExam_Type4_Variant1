@@ -18,5 +18,5 @@ public partial class PickupPoint
     /// <inheritdoc />
     /// </summary>
     /// <returns>This value can be correctly used in ComboBox without converters.</returns>
-    public override string ToString() => string.Join('—', City, Street, House);
+    public override string ToString() => string.Join(" — ", City, Street, House);
 }
