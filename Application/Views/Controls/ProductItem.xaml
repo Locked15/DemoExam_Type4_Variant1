@@ -9,7 +9,7 @@
 
     <UserControl.ContextMenu>
         <ContextMenu>
-            <MenuItem Header="Добавить в заказ" Click="OnAddToOrderClick" />
+            <MenuItem Name="addToOrderAction" Header="Добавить в заказ" Click="OnAddToOrderActionClick" />
         </ContextMenu>
     </UserControl.ContextMenu>
 
